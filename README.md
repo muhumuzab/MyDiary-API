@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/muhumuzab/MyDiary-API.svg?branch=develop)](https://travis-ci.org/muhumuzab/MyDiary-API)
-[![Coverage Status](https://coveralls.io/repos/github/muhumuzab/MyDiary-API/badge.svg?branch=develop)](https://coveralls.io/github/muhumuzab/MyDiary-API?branch=develop)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/muhumuzab/MyDiary-API.svg?branch=develop)](https://travis-ci.org/muhumuzab/MyDiary-API) [![Coverage Status](https://coveralls.io/repos/github/muhumuzab/MyDiary-API/badge.svg?branch=develop)](https://coveralls.io/github/muhumuzab/MyDiary-API?branch=develop)
 
 # Introduction
 
