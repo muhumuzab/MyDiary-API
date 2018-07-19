@@ -32,3 +32,15 @@ def register(version):
         return response
     except KeyError:
         invalid_keys()
+
+@app.route('/api/<version>/login', methods=['POST'])
+def login(version):
+    try:
+        request.get_json(force=True)
+        email = request.json['email']
+        password = request.json['password']
+        login_user = Authentication.login(email, password)
+        return login_user
+
+    except KeyError:
+        invalid_keys()
