@@ -13,3 +13,22 @@ def index():
     :return: 
     """
     return render_template('index.html')
+
+@app.route('/api/<version>/register', methods=['POST'])
+def register(version):
+    """
+    This end point registers a user
+    :param version: 
+    :return: 
+    """
+    request.get_json(force=True)
+    try:
+        first_name = request.json['f_name']
+        last_name = request.json['l_name']
+        email = request.json['email']
+        password = request.json['password']
+        response = Authentication.registration(first_name,
+                                               last_name, email, password)
+        return response
+    except KeyError:
+        invalid_keys()
