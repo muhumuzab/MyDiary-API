@@ -73,6 +73,35 @@ def get_single_diary(version, diary_id):
         invalid_keys()
 
 
+@app.route('/api/<version>/entries/<int:diary_id>', methods=['PUT'])
+def modify_diary(version, diary_id):
+    try:
+        request.get_json(force=True)
+        name = request.json['name']
+        response = Diary.edit_diary(diary_id, name)
+        return response
+    except KeyError:
+        invalid_keys()
+
+@app.route('/api/<version>/diary/<int:diary_id>/item', methods=['POST'])
+def diary_description(version, diary_id):
+    try:
+        request.get_json(force=True)
+        description = request.json['desc']
+        response = DiaryItem.add_diary_description(diary_id, description)
+        return response
+    except KeyError:
+        invalid_keys()
+
+
+def invalid_keys():
+    """
+    Handles invalid keys
+    :return: 
+    """
+    response = jsonify({'Error': 'Invalid keys'})
+    response.status_code = 400
+    return response
 
 
 
@@ -80,7 +109,8 @@ def get_single_diary(version, diary_id):
 
 
 
-        
+
+
 
 
 
