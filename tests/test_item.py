@@ -1,3 +1,5 @@
+'''
+
 from tests.test_base import BaseClass
 
 
@@ -37,7 +39,7 @@ class TestDiaryDescription(BaseClass):
         response = self.client.post('/api/v1/entries/1/item', data=self.desc)
         self.assertIn('Diary description added', response.data.decode())
         self.assertEqual(response.status_code, 201)
-
+'''
 
 
 
