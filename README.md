@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-## MyDiary UI templates
+## MyDiary UI templates - https://muhumuzab.github.io/MyDiary-API/UI/index.html
 
 
 MyDiary is an online journal where users can pen down their thoughts and feelings.
