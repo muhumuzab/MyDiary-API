@@ -17,10 +17,10 @@
 | --- | :--- | ---: |
 | POST  `/api/v1/login`  | logs in  a user. | TRUE
 | POST  `/api/v1/register`  | registers a new user | TRUE
-| POST  `/api/v1/entries/`  | Add a diary entry.| TRUE
-| GET  `/api/v1/entries/`   | gets all diary entries.| TRUE
-| GET  `/api/v1/entries/<diary_id>`  | Get diary entry by id. | TRUE
-| PUT  `/api/v1/entries/<diary_id>`  | Update diary entry by id. | TRUE
+| POST  `/api/v1/entries/`  | Add a diary entry.| FALSE
+| GET  `/api/v1/entries/`   | gets all diary entries.| FALSE
+| GET  `/api/v1/entries/<diary_id>`  | Get diary entry by id. | FALSE
+| PUT  `/api/v1/entries/<diary_id>`  | Update diary entry by id. | FALSE
 
 
 # Dependencies
