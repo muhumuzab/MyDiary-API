@@ -47,8 +47,20 @@ class Entries(Resource):
         """Fetch all diary entries."""
         return (entries), 200
 
-
-
-    
-
 api.add_resource(Entries, '/entries')
+
+class SingleEntry(Resource):
+
+    @api.doc('Fetch a single entry',
+             params={'entry_id': 'Id for a single entry'},
+             responses={200: 'OK', 404: 'NOT FOUND'})
+    def get(self, entry_id):
+        """Fetch a single diary entry."""
+        try:
+            entry = entries[int(entry_id)]
+            entry['id'] = int(entry_id)
+            return  jsonify(entry, {'message': 'diary entry retrieved successfully'}, 200)
+        except Exception as e:
+            return {'message': 'entry does not exist'}, 404
+
+api.add_resource(SingleEntry, '/entries/<int:entry_id>')
