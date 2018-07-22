@@ -34,7 +34,7 @@
 * MarkupSafe==1.0
 * validate-email==1.3
 * Werkzeug==0.14.1
-* pytest==3.6.3
+* nose==1.3.7
 
 # Installation
 To run this project, you'll need a working installation of python 3 and pip3. You also may need virtualenv.
