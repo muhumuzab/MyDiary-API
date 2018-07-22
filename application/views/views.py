@@ -63,4 +63,23 @@ class SingleEntry(Resource):
         except Exception as e:
             return {'message': 'entry does not exist'}, 404
 
+    @api.expect(entry)
+    def put(self,entry_id):
+        """ Edit an entry """
+
+        data = request.get_json()
+
+        if any(data):
+            # save entry to data structure
+            
+            try:
+
+                # set id for the diary entry 
+                
+                entries[int(entry_id)]['title'] = data['title']
+                entries[int(entry_id)]['body']  = data['body']
+                return jsonify(entries[int(entry_id)], {'message': 'diary entry updated successfully'},201)
+            except Exception as e:
+                return {'message': 'Entry not updated,make sure you provide all details'}, 500
+
 api.add_resource(SingleEntry, '/entries/<int:entry_id>')
