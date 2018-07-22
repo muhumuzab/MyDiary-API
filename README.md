@@ -40,21 +40,18 @@
 To run this project, you'll need a working installation of python 3 and pip3. You also may need virtualenv.
 
 ## To install the app:
-1. Clone this repository - git clone https://github.com/muhumuzab/MyDiary-API/tree/develop
+1. Clone this repository - git clone https://github.com/muhumuzab/MyDiary-API/
 2. Make a virtual environment for the project - virtualenv /path/to/my-project-venv
 3. Activate the virtual environment - source /path/to/my-project-venv/bin/activate
 4. Install requirements - pip3 install requirements.txt
-5. Navigate to the project root and run the tests.
--  type - pytest 
-- All tests should be passing.
-6. Navigate to the project root and run the app.py file.
-- python app.py
+5. Navigate to the project root and run the tests by typing 'nosetests'.All tests should be passing.
+6. Navigate to the project root and run the app.py file - type 'python app.py'
 
 
 
 # Testing
-1. Install pytest extension.pip3 install pytest
+
+1. Install nosetests.pip install nosetests
 2. Navigate to the root of the project.
-3. Run pytest
-- All tests should be passing.
+3. Run nosetests - All tests should be passing.
 
