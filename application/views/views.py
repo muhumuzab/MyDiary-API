@@ -42,6 +42,11 @@ class Entries(Resource):
         else:
             return {'message': 'make sure you provide all required fields.'}, 400
 
+    @api.doc('list of entries', responses={200: 'OK'})
+    def get(self):
+        """Fetch all diary entries."""
+        return (entries), 200
+
 
 
     
