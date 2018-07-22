@@ -65,7 +65,7 @@ class SingleEntry(Resource):
         try:
             entry = entries[int(entry_id)]
             entry['id'] = int(entry_id)
-            return jsonify(entry), 201
+            return  jsonify(entry, {'message': 'diary entry retrieved successfully'}, 200)
         except Exception as e:
             return {'message': 'entry does not exist'}, 404
 
@@ -84,7 +84,7 @@ class SingleEntry(Resource):
                 
                 entries[int(entry_id)]['title'] = data['title']
                 entries[int(entry_id)]['body']  = data['body']
-                return jsonify(entries[int(entry_id)], 201)
+                return jsonify(entries[int(entry_id)], {'message': 'diary entry updated successfully'},201)
             except Exception as e:
                 return {'message': 'Entry not updated,make sure you provide all details'}, 500
 
