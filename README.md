@@ -32,6 +32,7 @@
 * Flask-Testing==0.7.1
 * itsdangerous==0.24
 * Jinja2==2.10
+* Gunicorn==19.6.0
 * MarkupSafe==1.0
 * validate-email==1.3
 * Werkzeug==0.14.1
