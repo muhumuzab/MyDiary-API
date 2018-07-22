@@ -1,36 +1,34 @@
-# instance/config.py
+import os
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
-class MainConfiguration(object):
-    """ Parent configuration class"""
-    DEBUG = False
-    CSRF_ENABLED = True
-
-
-class DevelopmentEnvironment(MainConfiguration):
-    """ Configurations for development"""
-    DEBUG = True
-
-
-class TestingEnvironment(MainConfiguration):
-    """ Configurations for Testing environment"""
-    DEBUG = True
-    TESTING = True
-
-
-class StagingEnvironment(MainConfiguration):
-    """ Configurations for staging environment"""
-    DEBUG = True
-
-
-class ProductionEnvironment(MainConfiguration):
-    """ Configurations for production environment"""
+class Config(object):
     DEBUG = False
     TESTING = False
 
-application_config = {
-    'MainConfig': MainConfiguration,
-    'TestingEnv': TestingEnvironment,
-    'DevelopmentEnv': DevelopmentEnvironment,
-    'ProductionEnv': ProductionEnvironment
+
+class ProductionConfig(Config):
+    DEBUG = False
+
+
+class StagingConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+
+class DevelopmentConfig(Config):
+    DEVELOPMENT = True
+    DEBUG = True
+
+
+class TestingConfig(Config):
+    TESTING = True
+    DEBUG = True
+
+
+configuration = {
+    'staging': StagingConfig,
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'default': Config
 }
