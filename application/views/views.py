@@ -7,7 +7,6 @@ from application.models.models import DiaryEntry
 
 api = Namespace('Diary Entry', Description='Operations on Diary Entry')
 
-# data structure to store ride offers
 entries = {}
 
 entry = api.model('Diary Entry', {
@@ -29,10 +28,10 @@ class Entries(Resource):
         # Check whether there is data
 
         if any(data):
-            # save entry to data structure
+            # save diary entry to data structure
             
             
-            # set id for the entry offer
+            # set id for the diary entry
             diary_entry = DiaryEntry(data)
             entry_id = len(entries) + 1
             entries[(entry_id)] = diary_entry.getDict()
