@@ -35,6 +35,10 @@ img {
 	margin-right: 500px;
 }*/
 
+.welcome-h4 {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
 
 .update2 {
 	border:0;
@@ -141,7 +145,10 @@ img {
 }
 
 
-
+.footer{
+	padding-top: 7px;
+	padding-bottom: 20px;
+}
 .special {
 	color: black;
 	margin-left:100px;
