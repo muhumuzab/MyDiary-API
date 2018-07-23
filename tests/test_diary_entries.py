@@ -43,7 +43,7 @@ class DiaryEntryTests(unittest.TestCase):
         response = self.app.post('/api/v1/entries',
                                  data=json.dumps(self.entry),
                                  content_type='application/json')
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
         response_data = json.loads(response.get_data().decode('utf-8'))
         self.assertEqual(response_data['message'],
                          'diary entry added successfully.')

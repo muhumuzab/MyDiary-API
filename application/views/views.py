@@ -19,8 +19,7 @@ entry = api.model('Diary Entry', {
 class Entries(Resource):
     
 
-    @api.doc(responses={'message': 'diary entry added successfully.',
-                        201: 'Created', 400: 'BAD FORMAT'})
+   
     @api.expect(entry)
     def post(self):
         """Create an entry."""
@@ -35,8 +34,10 @@ class Entries(Resource):
             diary_entry = DiaryEntry(data)
             entry_id = len(entries) + 1
             entries[(entry_id)] = diary_entry.getDict()
+            
             return {'message': 'diary entry added successfully.',
                             'status_code': 200}
+            
         else:
             return {'message': 'make sure you provide all required fields.', 'status_code':400}
 
