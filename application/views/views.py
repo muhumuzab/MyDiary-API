@@ -35,16 +35,15 @@ class Entries(Resource):
             diary_entry = DiaryEntry(data)
             entry_id = len(entries) + 1
             entries[(entry_id)] = diary_entry.getDict()
-            response = {'message': 'diary entry added successfully.',
-                            'entry id': entry_id}
-            return (response), 201
+            return {'message': 'diary entry added successfully.',
+                            'status_code': 200}
         else:
-            return {'message': 'make sure you provide all required fields.'}, 400
+            return {'message': 'make sure you provide all required fields.', 'status_code':400}
 
     @api.doc('list of entries', responses={200: 'OK'})
     def get(self):
         """Fetch all diary entries."""
-        return (entries), 200
+        return {'entries':entries, 'status_code':200}
 
 api.add_resource(Entries, '/entries')
 
@@ -58,9 +57,9 @@ class SingleEntry(Resource):
         try:
             entry = entries[int(entry_id)]
             entry['id'] = int(entry_id)
-            return  jsonify(entry, {'message': 'diary entry retrieved successfully'}, 200)
+            return {'entry':entry, 'message': 'diary entry retrieved successfully','status_code':200}
         except Exception as e:
-            return {'message': 'entry does not exist'}, 404
+            return {'message': 'entry does not exist', 'status_code':404}
 
     @api.expect(entry)
     def put(self,entry_id):
@@ -77,8 +76,8 @@ class SingleEntry(Resource):
                 
                 entries[int(entry_id)]['title'] = data['title']
                 entries[int(entry_id)]['body']  = data['body']
-                return jsonify(entries[int(entry_id)], {'message': 'diary entry updated successfully'},201)
+                return {'message': 'diary entry updated successfully', 'status_code':201}
             except Exception as e:
-                return {'message': 'Entry not updated,make sure you provide all details'}, 500
+                return {'message': 'Entry not updated,make sure you provide all details', 'status_code': 400}
 
 api.add_resource(SingleEntry, '/entries/<int:entry_id>')
