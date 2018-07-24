@@ -22,6 +22,7 @@ class Entries(Resource):
 
         if data['title'] == "" and data['body'] == "":
             return {'message': 'cannot post empty diary entry','status_code':400}
+            
 
         # Check whether entry has empty title
         if data['title'] == "":

@@ -28,15 +28,18 @@ class DiaryEntryTests(unittest.TestCase):
             "body": "Probably the best movie ever"
 
         }
+
+        
       
 
 
-
+    
     def tearDown(self):
         """Release flask app instance"""
+
         self.app = None
         self.entry = None
-        
+    
 
     def test_create_diary_entry(self):
         """test user can create a diary entry"""
@@ -78,27 +81,70 @@ class DiaryEntryTests(unittest.TestCase):
 
     def test_cannot_create_entry_without_details(self):
         """ test user cannot create an empty diary entry """
-        entry = {}
+
+        entry = {
+            "title": "",
+            "body": ""
+
+        }
         response = self.app.post('/api/v1/entries',
                                  data=json.dumps(entry),
                                  content_type='application/json')
-        self.assertEqual(response.status_code, 400)
+        #self.assertEqual(response['status_code'], 400)
         response_data = json.loads(response.get_data().decode('utf-8'))
         self.assertEqual(response_data['message'],
-                         "make sure you provide all required fields.")
+                         'cannot post empty diary entry')
+
+    def test_cannot_create_entry_without_title(self):
+        """ test user cannot create an entry without title """
+
+        entry_without_title = {
+            "title": "",
+            "body": "Probably the best movie ever"
+        }
+
+        response = self.app.post('/api/v1/entries',
+                                 data=json.dumps(entry_without_title),
+                                 content_type='application/json')
+        #self.assertEqual(response['status_code'], 400)
+        response_data = json.loads(response.get_data().decode('utf-8'))
+        self.assertEqual(response_data['message'],
+                         'please input title')
+
+    def test_cannot_create_entry_without_body(self):
+        """ test user cannot create an entry without title """
+
+        entry_without_body = {
+            "title": "Harry Porter",
+            "body": ""
+        }
+
+        response = self.app.post('/api/v1/entries',
+                                 data=json.dumps(entry_without_body),
+                                 content_type='application/json')
+        #self.assertEqual(response['status_code'], 400)
+        response_data = json.loads(response.get_data().decode('utf-8'))
+        self.assertEqual(response_data['message'],
+                         'please input body')
+
+
+
+
+
         
     def test_get_entry_that_does_not_exist(self):
         """ test user cannot get a diary entry that does not exist """
+
         response = self.app.post('/api/v1/entries',
                                  data=json.dumps(self.entry),
                                  content_type='application/json')
 
         response = self.app.get('/api/v1/entries/23',
                                 content_type='application/json')
-        self.assertEqual(response.status_code, 404)
-
+        response_data = json.loads(response.get_data().decode('utf-8'))
+        self.assertEqual(response_data['message'],
+                         'entry does not exist')
     
-
 
 
 
