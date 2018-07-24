@@ -70,6 +70,40 @@ class SingleEntry(Resource):
 
         data = request.get_json()
 
+        # Check whether title and body are empty
+        if data['title'] == "" and data['body'] == "":
+            return {'message': 'cannot post empty diary entry', 'status_code': 400}
+
+        # Check whether entry has empty title
+        if data['title'] == "":
+            return {'message': 'please input title', 'status_code': 400}
+
+        # Check whether entry has empty body
+        if data['body'] == "":
+            return {'message': 'please input body', 'status_code': 400}
+
+        # Check whether entry has both title and body
+        if data['title'] and data['body']:
+
+            try:
+
+               
+
+            # Check for duplicate titles
+                if not any(True for entry in entries.values() if entry["title"] == data["title"]):
+
+                    entries[int(entry_id)]['title'] = data['title']
+                    entries[int(entry_id)]['body'] = data['body']
+                    return {'message': 'diary entry updated successfully', 'status_code': 201}
+                else:
+                    return {'message': 'entry with such title already exists', 'status_code': 404}
+
+            except Exception as e:
+                return {'message': 'Something wrong with the server', 'status_code': 500}
+
+
+        '''
+
         if any(data):
             # save entry to data structure
 
@@ -82,6 +116,7 @@ class SingleEntry(Resource):
                 return {'message': 'diary entry updated successfully', 'status_code': 201}
             except Exception as e:
                 return {'message': 'Entry not updated,make sure you provide all details', 'status_code': 400}
+        '''
 
 
 api.add_resource(SingleEntry, '/entries/<int:entry_id>')
