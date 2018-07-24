@@ -102,21 +102,4 @@ class SingleEntry(Resource):
                 return {'message': 'Something wrong with the server', 'status_code': 500}
 
 
-        '''
-
-        if any(data):
-            # save entry to data structure
-
-            try:
-
-                # set id for the diary entry
-
-                entries[int(entry_id)]['title'] = data['title']
-                entries[int(entry_id)]['body'] = data['body']
-                return {'message': 'diary entry updated successfully', 'status_code': 201}
-            except Exception as e:
-                return {'message': 'Entry not updated,make sure you provide all details', 'status_code': 400}
-        '''
-
-
 api.add_resource(SingleEntry, '/entries/<int:entry_id>')
