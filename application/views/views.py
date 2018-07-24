@@ -44,8 +44,7 @@ class Entries(Resource):
 
         else:
             return {'message': 'something is wrong with the server.', 'status_code': 500}
-
-    @api.doc('list of entries', responses={200: 'OK'})
+            
     def get(self):
         """Fetch all diary entries."""
         return {'entries': entries, 'status_code': 200}
