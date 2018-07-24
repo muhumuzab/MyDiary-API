@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Flask
 from flask_restplus import Api
 from instance.config import configuration
 
@@ -8,16 +8,13 @@ def create_app(config):
     app.config.from_object(configuration[config])
     app.url_map.strict_slashes = False
 
-    # Enable swagger editor
-    #app.config['SWAGGER_UI_JSNEDITOR'] = True
+    
     # initialize api
     api = Api(app=app,
               title='My diary',
               doc='/api/v1/documentation',
               description='My Diary is an online journal where users can pen down their thoughts and feelings')
     doc = ('/api/v1/documentation')
-
-    # Blueprints to be registered here
 
 
     from application.views.views import api as entries

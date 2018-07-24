@@ -9,37 +9,46 @@ api = Namespace('Diary Entry', Description='Operations on Diary Entry')
 
 entries = {}
 
-entry = api.model('Diary Entry', {
-    'title': fields.String(description='title of the diary entry'),
-    'body': fields.String(description='body of the diary entry'),
-})
-
 
 
 class Entries(Resource):
     
 
-   
-    @api.expect(entry)
     def post(self):
         """Create an entry."""
         data = request.get_json()
-        # Check whether there is data
+        
+        # Check whether entry has empty title and body
 
-        if any(data):
-            # save diary entry to data structure
+        if data['title'] == "" and data['body'] == "":
+            return {'message': 'cannot post empty diary entry','status_code':400}
+
+        # Check whether entry has empty title
+        if data['title'] == "":
+            return {'message': 'please input title','status_code':400}
+
+        # Check whether entry has empty body
+        if data['body'] == "":
+            return {'message': 'please input body','status_code':400}
+
+        # Check whether entry has both title and body
+        if data['title'] and data['body'] :
+
+            # Check for duplicate titles
+            if not any(True for entry in entries.values() if entry["title"] == data["title"]):
+                diary_entry = DiaryEntry(data)
+                entry_id = len(entries) + 1
+                entries[(entry_id)] = diary_entry.getDict()
             
-            
-            # set id for the diary entry
-            diary_entry = DiaryEntry(data)
-            entry_id = len(entries) + 1
-            entries[(entry_id)] = diary_entry.getDict()
-            
-            return {'message': 'diary entry added successfully.',
+                return {'message': 'diary entry added successfully.',
                             'status_code': 200}
+            else:
+                return {'message': 'entry with that title already exists, please choose another title.',
+                            'status_code': 400}
+            
             
         else:
-            return {'message': 'make sure you provide all required fields.', 'status_code':400}
+            return {'message': 'something is wrong with the server.', 'status_code':500}
 
     @api.doc('list of entries', responses={200: 'OK'})
     def get(self):
@@ -50,9 +59,7 @@ api.add_resource(Entries, '/entries')
 
 class SingleEntry(Resource):
 
-    @api.doc('Fetch a single entry',
-             params={'entry_id': 'Id for a single entry'},
-             responses={200: 'OK', 404: 'NOT FOUND'})
+   
     def get(self, entry_id):
         """Fetch a single diary entry."""
         try:
@@ -62,7 +69,7 @@ class SingleEntry(Resource):
         except Exception as e:
             return {'message': 'entry does not exist', 'status_code':404}
 
-    @api.expect(entry)
+    
     def put(self,entry_id):
         """ Edit an entry """
 
