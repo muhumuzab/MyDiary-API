@@ -62,8 +62,7 @@ class SingleEntry(Resource):
         try:
             entry = entries[int(entry_id)]
             entry['id'] = int(entry_id)
-            return {'entry': entry, 'message':
-                    'diary entry retrieved successfully'}, 200
+            return {'entry': entry }, 200
         except Exception as e:
             return {'message':
                     'diary entry with given id does not exist'}, 404
