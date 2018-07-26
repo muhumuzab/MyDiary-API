@@ -65,7 +65,7 @@ class DiaryEntryTests(unittest.TestCase):
         response = self.app.put('/api/v1/entries/1',
                                 data=json.dumps(self.entry2),
                                 content_type='application/json')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
     def test_cannot_create_entry_without_details(self):
         """ test user cannot create an empty diary entry """
@@ -78,9 +78,10 @@ class DiaryEntryTests(unittest.TestCase):
         response = self.app.post('/api/v1/entries',
                                  data=json.dumps(entry),
                                  content_type='application/json')
-        response_data = json.loads(response.get_data().decode('utf-8'))
-        self.assertEqual(response_data['message'],
-                         'cannot post empty diary entry')
+        #response_data = json.loads(response.get_data().decode('utf-8'))
+        #self.assertEqual(response_data['message'],
+                         #'cannot post empty diary entry')
+        self.assertEqual(response.status_code, 400)
 
     def test_cannot_create_entry_without_title(self):
         """ test user cannot create an entry without title """
@@ -123,7 +124,7 @@ class DiaryEntryTests(unittest.TestCase):
                                 content_type='application/json')
         response_data = json.loads(response.get_data().decode('utf-8'))
         self.assertEqual(response_data['message'],
-                         'entry does not exist')
+                         'diary entry with given id does not exist')
 
 
 if __name__ == '__main__':
