@@ -78,7 +78,7 @@ class DiaryEntryTests(unittest.TestCase):
         response = self.app.post('/api/v1/entries',
                                  data=json.dumps(entry),
                                  content_type='application/json')
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 406)
 
     def test_cannot_create_entry_without_title(self):
         """ test user cannot create an entry without title """

@@ -19,15 +19,15 @@ class Entries(Resource):
         # Check whether entry has empty title and body
 
         if data['title'] == "" and data['body'] == "":
-            return {'message': 'cannot post empty diary entry'}, 400
+            return {'message': 'cannot post empty diary entry'}, 406
 
         # Check whether entry has empty title
         if data['title'] == "":
-            return {'message': 'please input title'}, 400
+            return {'message': 'please input title'}, 406
 
         # Check whether entry has empty body
         if data['body'] == "":
-            return {'message': 'please input body'}, 400
+            return {'message': 'please input body'}, 406
 
         # Check whether entry has both title and body
         if data['title'] and data['body']:
@@ -42,7 +42,7 @@ class Entries(Resource):
                 return {'message': 'diary entry added successfully.'}, 201
             else:
                 return {'message': 'entry with that title already exists,\
-                            please choose another title.', 'status_code': 400}
+                            please choose another title.'}, 406
 
         else:
             return {'message': 'something is wrong with the server.'}, 500
@@ -74,15 +74,15 @@ class SingleEntry(Resource):
 
         # Check whether title and body are empty
         if data['title'] == "" and data['body'] == "":
-            return {'message': 'cannot post empty diary entry'}, 400
+            return {'message': 'cannot post empty diary entry'}, 406
 
         # Check whether entry has empty title
         if data['title'] == "":
-            return {'message': 'please input title'}, 400
+            return {'message': 'please input title'}, 406
 
         # Check whether entry has empty body
         if data['body'] == "":
-            return {'message': 'please input body'}, 400
+            return {'message': 'please input body'}, 406
 
         # Check whether entry has both title and body
         if data['title'] and data['body']:
@@ -97,9 +97,8 @@ class SingleEntry(Resource):
                     entries[int(entry_id)]['body'] = data['body']
                     return {'message':
                             'diary entry updated successfully'}, 201
-                else:
-                    return {'message':
-                            'entry with such title already exists'}, 404
+                return {'message':
+                            'entry with such title already exists'}, 406
 
             except Exception as e:
                 return {'message':
