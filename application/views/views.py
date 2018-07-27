@@ -39,7 +39,7 @@ class Entries(Resource):
                 entry_id = len(entries) + 1
                 entries[(entry_id)] = diary_entry.getDict()
 
-                return {'message': 'diary entry added successfully.'}, 200
+                return {'message': 'diary entry added successfully.'}, 201
             else:
                 return {'message': 'entry with that title already exists,\
                             please choose another title.', 'status_code': 400}
