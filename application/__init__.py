@@ -13,7 +13,7 @@ def create_app(config):
               title='My diary',
               doc='/api/v1/documentation',
               description='My Diary is an online journal where users can pen down their thoughts and feelings')
-    doc = ('/api/v1/documentation')
+    
 
     from application.views.views import api as entries
     api.add_namespace(entries, path='/api/v1')
