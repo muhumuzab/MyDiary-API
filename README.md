@@ -57,4 +57,4 @@ To run this project, you'll need a working installation of python 3 and pip3. Yo
 
 # Heroku
 
-The application is deployed at the following url - https://diary-api-1.herokuapp.com/
+The application is deployed at the following url -- https://diary-api-1.herokuapp.com/
